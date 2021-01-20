@@ -1,10 +1,17 @@
 import React from "react";
-import { connect } from "react-redux";
-import { toggle_note } from "../redux/actions/notes.action";
+import { connect, useDispatch } from "react-redux";
+import { delete_note, toggle_note } from "../redux/actions/notes.action";
 
 function Note({ note: { date, id, note, isImportant }, toggle_note }) {
+  const dispatch = useDispatch();
   return (
     <div className="card m-2">
+      <button
+        className="btn btn-close"
+        onClick={() => dispatch(delete_note(id))}
+      >
+        x
+      </button>
       <div className="card-header">{date}</div>
       <div className="card-body">{note}</div>
       <button className="btn mb-2" onClick={() => toggle_note(id)}>

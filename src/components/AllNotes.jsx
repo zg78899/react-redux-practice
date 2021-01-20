@@ -4,7 +4,7 @@ import Note from "./Note";
 
 import { connect, useSelector, useStore } from "react-redux";
 
-function AllNoteS() {
+function AllNotes() {
   const notes = useSelector((state) => state.note_reducer.notes);
 
   const store = useStore();
@@ -24,4 +24,4 @@ function AllNoteS() {
 //   notes: state.note_reducer.notes,
 // });
 // export default connect(mapStateToProps, null)(AllNoteS);
-export default AllNoteS;
+export default AllNotes;

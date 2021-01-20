@@ -41,10 +41,16 @@ function App({ loading }) {
       {loading && (
         <div className="text-center">
           {" "}
-          <div className="spinner-border my-3"></div>
+          <div
+            style={{
+              position: "absolute",
+              top: "11%",
+              left: "16%",
+            }}
+            className="spinner-border my-3"
+          ></div>
         </div>
       )}
-
       <ImportantNote />
       <hr />
       <AllNotes />

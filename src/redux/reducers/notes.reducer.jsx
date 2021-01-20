@@ -1,4 +1,10 @@
-import { ADD_NOTE, LOAD_NOTE, SET_LOADER, TOGGLE_NOTE } from "../types";
+import {
+  ADD_NOTE,
+  DELETE_NOTE,
+  LOAD_NOTE,
+  SET_LOADER,
+  TOGGLE_NOTE,
+} from "../types";
 
 const initialState = {
   notes: [],
@@ -44,6 +50,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+
+    case DELETE_NOTE:
+      const remove_note = state.notes.filter((note) => note.id !== payload);
+      return {
+        ...state,
+        notes: remove_note,
+        loading: false,
       };
     default:
       return state;

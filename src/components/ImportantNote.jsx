@@ -8,7 +8,7 @@ function ImportantNote({ notes }) {
       <h4>Inportant Notes</h4>
       <div className="row">
         {notes
-          .filter((note) => note.isImportant === true)
+          ?.filter((note) => note.isImportant === true)
           .map((note) => (
             <Note note={note} key={note.id} />
           ))}

@@ -1,4 +1,10 @@
-import { ADD_NOTE, TOGGLE_NOTE, LOAD_NOTE, SET_LOADER } from "../types";
+import {
+  ADD_NOTE,
+  TOGGLE_NOTE,
+  LOAD_NOTE,
+  SET_LOADER,
+  DELETE_NOTE,
+} from "../types";
 import { db } from "../../firebase";
 
 export const add_new_note = (data) => async (dispatch) => {
@@ -11,6 +17,22 @@ export const add_new_note = (data) => async (dispatch) => {
       type: ADD_NOTE,
       payload: data,
     });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const delete_note = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SET_LOADER,
+    });
+    const snapshot = db.collection("notes").doc(id.toString());
+    const data = (await snapshot.get()).data();
+    snapshot.delete(data);
+    dispatch({
+      type: DELETE_NOTE,
+    });
+    dispatch(load_notes());
   } catch (error) {
     console.log(error.message);
   }

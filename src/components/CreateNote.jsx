@@ -17,6 +17,7 @@ function CreateNote() {
     };
     console.log(data);
     dispatch(add_new_note(data));
+    setNote("");
     // store.dispatch({
     //   type: "ADD_NOTE",
     //   payload: data,
