@@ -33,7 +33,7 @@ function App() {
       <hr />
       <ImportantNote notes={notes} toggle_note={toggle_note} />
       <hr />
-      <AllNotes notes={notes} toggle_note={toggle_note} />
+      <AllNotes toggle_note={toggle_note} />
     </div>
   );
 }

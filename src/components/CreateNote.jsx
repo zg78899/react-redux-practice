@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { store } from "../redux/store";
 
-function CreateNote({ createNote }) {
+function CreateNote({ createNote, add_new_note }) {
   const [note, setNote] = useState("");
 
   const handleSubmit = (e) => {
@@ -11,8 +13,13 @@ function CreateNote({ createNote }) {
       date: new Date().toJSON().slice(0, 10),
       isImportant: false,
     };
-    createNote(data);
-    console.log(data);
+    add_new_note(data);
+    // store.dispatch({
+    //   type: "ADD_NOTE",
+    //   payload: data,
+    // });
+    // createNote(data);
+    // console.log(data);
   };
 
   return (
@@ -36,4 +43,13 @@ function CreateNote({ createNote }) {
     </div>
   );
 }
-export default CreateNote;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    add_new_note: (data) =>
+      dispatch({
+        type: "ADD_NOTE",
+        payload: data,
+      }),
+  };
+};
+export default connect(null, mapDispatchToProps)(CreateNote);
