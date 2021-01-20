@@ -1,14 +1,8 @@
-import { ADD_NOTE, TOGGLE_NOTE } from "../types";
+import { ADD_NOTE, LOAD_NOTE, SET_LOADER, TOGGLE_NOTE } from "../types";
 
 const initialState = {
-  notes: [
-    {
-      id: 1,
-      date: "2021-01-21",
-      isImportant: false,
-      note: "im a student",
-    },
-  ],
+  notes: [],
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +11,7 @@ const reducer = (state = initialState, action) => {
     case ADD_NOTE:
       return {
         ...state,
+        loading: false,
         notes: [...state.notes, payload],
       };
 
@@ -34,8 +29,22 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         notes: new_notes,
+        loading: false,
+      };
+
+    case LOAD_NOTE:
+      return {
+        ...state,
+        notes: payload,
+        loading: false,
       };
     // setNotes(new_notes);
+
+    case SET_LOADER:
+      return {
+        ...state,
+        loading: true,
+      };
     default:
       return state;
   }

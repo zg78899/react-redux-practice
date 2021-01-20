@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllNotes from "./components/AllNotes";
 import CreateNote from "./components/CreateNote";
 import ImportantNote from "./components/ImportantNote";
 
-function App() {
+import { store } from "./redux/store";
+import { load_notes } from "./redux/actions/notes.action";
+import { connect } from "react-redux";
+function App({ loading }) {
   // const [notes, setNotes] = useState([]);
 
   // const createNote = (newNote) => {
@@ -27,15 +30,28 @@ function App() {
 
   // console.log(notes);
 
+  useEffect(() => {
+    store.dispatch(load_notes());
+  }, []);
+
   return (
     <div className="container mt-3 p-3">
       <CreateNote />
       <hr />
+      {loading && (
+        <div className="text-center">
+          {" "}
+          <div className="spinner-border my-3"></div>
+        </div>
+      )}
+
       <ImportantNote />
       <hr />
       <AllNotes />
     </div>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => ({
+  loading: state.note_reducer.loading,
+});
+export default connect(mapStateToProps, null)(App);
