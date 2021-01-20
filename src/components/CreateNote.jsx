@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 // import { store } from "../redux/store";
 import { add_new_note } from "../redux/actions/notes.action";
 
-function CreateNote({ add_new_note }) {
+function CreateNote() {
   const [note, setNote] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ function CreateNote({ add_new_note }) {
       isImportant: false,
     };
     console.log(data);
-    add_new_note(data);
+    dispatch(add_new_note(data));
     // store.dispatch({
     //   type: "ADD_NOTE",
     //   payload: data,
@@ -59,4 +60,5 @@ function CreateNote({ add_new_note }) {
 //     payload: data,
 //   });
 // };
-export default connect(null, { add_new_note })(CreateNote);
+// export default connect(null, { add_new_note })(CreateNote);
+export default CreateNote;
