@@ -4,36 +4,36 @@ import CreateNote from "./components/CreateNote";
 import ImportantNote from "./components/ImportantNote";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  // const [notes, setNotes] = useState([]);
 
-  const createNote = (newNote) => {
-    setNotes([...notes, newNote]);
-  };
-  const toggle_note = (id) => {
-    const new_notes = notes.slice();
-    const index = new_notes.findIndex((note) => note.id === id);
+  // const createNote = (newNote) => {
+  //   setNotes([...notes, newNote]);
+  // };
+  // const toggle_note = (id) => {
+  //   const new_notes = notes.slice();
+  //   const index = new_notes.findIndex((note) => note.id === id);
 
-    const note = new_notes[index];
+  //   const note = new_notes[index];
 
-    //new
-    const new_note = {
-      ...note,
-      isImportant: !note.isImportant,
-    };
-    //기존dml
-    new_notes[index] = new_note;
-    setNotes(new_notes);
-  };
+  //   //new
+  //   const new_note = {
+  //     ...note,
+  //     isImportant: !note.isImportant,
+  //   };
+  //   //기존dml
+  //   new_notes[index] = new_note;
+  //   setNotes(new_notes);
+  // };
 
-  console.log(notes);
+  // console.log(notes);
 
   return (
     <div className="container mt-3 p-3">
-      <CreateNote createNote={createNote} />
+      <CreateNote />
       <hr />
-      <ImportantNote notes={notes} toggle_note={toggle_note} />
+      <ImportantNote />
       <hr />
-      <AllNotes toggle_note={toggle_note} />
+      <AllNotes />
     </div>
   );
 }

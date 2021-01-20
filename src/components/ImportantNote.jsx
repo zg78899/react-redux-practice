@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import Note from "./Note";
 
-function ImportantNote({ notes, toggle_note }) {
+function ImportantNote({ notes }) {
   return (
     <div className="importantNodes">
       <h4>Inportant Notes</h4>
@@ -9,10 +10,14 @@ function ImportantNote({ notes, toggle_note }) {
         {notes
           .filter((note) => note.isImportant === true)
           .map((note) => (
-            <Note note={note} toggle_note={toggle_note} key={note.id} />
+            <Note note={note} key={note.id} />
           ))}
       </div>
     </div>
   );
 }
-export default ImportantNote;
+
+const maptStateToProps = (state) => ({
+  notes: state.note_reducer.notes,
+});
+export default connect(maptStateToProps, null)(ImportantNote);

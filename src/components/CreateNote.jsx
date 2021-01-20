@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { store } from "../redux/store";
+// import { store } from "../redux/store";
+import { add_new_note } from "../redux/actions/notes.action";
 
-function CreateNote({ createNote, add_new_note }) {
+function CreateNote({ add_new_note }) {
   const [note, setNote] = useState("");
 
   const handleSubmit = (e) => {
@@ -13,13 +14,13 @@ function CreateNote({ createNote, add_new_note }) {
       date: new Date().toJSON().slice(0, 10),
       isImportant: false,
     };
+    console.log(data);
     add_new_note(data);
     // store.dispatch({
     //   type: "ADD_NOTE",
     //   payload: data,
     // });
     // createNote(data);
-    // console.log(data);
   };
 
   return (
@@ -43,13 +44,19 @@ function CreateNote({ createNote, add_new_note }) {
     </div>
   );
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    add_new_note: (data) =>
-      dispatch({
-        type: "ADD_NOTE",
-        payload: data,
-      }),
-  };
-};
-export default connect(null, mapDispatchToProps)(CreateNote);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     add_new_note: (data) =>
+//       dispatch({
+//         type: "ADD_NOTE",
+//         payload: data,
+//       }),
+//   };
+// };
+// const add_new_note = (data) => async (dispatch) => {
+//   dispatch({
+//     type: "ADD_NOTE",
+//     payload: data,
+//   });
+// };
+export default connect(null, { add_new_note })(CreateNote);
