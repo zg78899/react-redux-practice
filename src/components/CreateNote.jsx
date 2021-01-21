@@ -29,7 +29,7 @@ function CreateNote() {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <textarea
+          <input
             className="form-control"
             name=""
             id=""
@@ -37,7 +37,7 @@ function CreateNote() {
             placeholder="Write your dream note;)"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-          ></textarea>
+          ></input>
           <button type="submit" className="btn">
             ADD Note
           </button>

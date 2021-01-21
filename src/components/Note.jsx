@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { delete_note, toggle_note } from "../redux/actions/notes.action";
 
-function Note({ note: { date, id, note, isImportant }, toggle_note }) {
+function Note({
+  note: { date, id, note, isImportant },
+  toggle_note,
+  // delete_note,
+}) {
   const dispatch = useDispatch();
+
   return (
     <div className="card m-2">
       <button
@@ -20,4 +25,5 @@ function Note({ note: { date, id, note, isImportant }, toggle_note }) {
     </div>
   );
 }
-export default connect(null, { toggle_note })(Note);
+export default connect(null, { toggle_note, delete_note })(Note);
+// export default Note;

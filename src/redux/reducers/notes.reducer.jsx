@@ -53,10 +53,13 @@ const reducer = (state = initialState, action) => {
       };
 
     case DELETE_NOTE:
-      const remove_note = state.notes.filter((note) => note.id !== payload);
+      const newNote = state.notes.slice();
+
+      const idx = newNote.findIndex((note) => note.id === payload);
+      const filter_notes = new_notes.slice(0, idx);
       return {
         ...state,
-        notes: remove_note,
+        notes: filter_notes,
         loading: false,
       };
     default:
