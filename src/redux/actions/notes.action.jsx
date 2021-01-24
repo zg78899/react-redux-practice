@@ -30,6 +30,7 @@ export const delete_note = (id) => async (dispatch) => {
     const data = (await snapshot.get()).data();
     console.log(data);
     snapshot.delete(data);
+
     dispatch(load_notes());
   } catch (error) {
     console.log(error.message);
